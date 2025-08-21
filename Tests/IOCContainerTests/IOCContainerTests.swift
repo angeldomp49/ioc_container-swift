@@ -26,7 +26,7 @@ final class IOCContainerTests: XCTestCase {
         }
         
         // Bean builder
-        class TestBeanBuilder: BeanBuilder {
+        class TestBeanBuilder: ServiceProvider {
             func build() throws -> Any {
                 return TestBean(value: "test")
             }
@@ -54,7 +54,7 @@ final class IOCContainerTests: XCTestCase {
             init() { self.timestamp = Date() }
         }
         
-        class TestPrototypeBuilder: BeanBuilder {
+        class TestPrototypeBuilder: ServiceProvider {
             func build() throws -> Any {
                 return TestPrototype()
             }
@@ -95,7 +95,7 @@ final class IOCContainerTests: XCTestCase {
             init(a: BeanA) { self.a = a }
         }
         
-        class CircularBeanBuilder: BeanBuilder {
+        class CircularBeanBuilder: ServiceProvider {
             func build() throws -> Any {
                 throw IOCContainerError.circularDependency("Circular dependency detected between BeanA and BeanB")
             }

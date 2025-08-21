@@ -1,6 +1,7 @@
 import Foundation
 
 public class SingletonInformation {
+    private let idientif
     private var instance: Any?
     private let provider: ServiceProvider
     private let lock = NSLock()
