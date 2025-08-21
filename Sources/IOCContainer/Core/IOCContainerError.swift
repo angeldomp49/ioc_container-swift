@@ -1,18 +1,25 @@
 import Foundation
 
-public enum IOCContainerError: LocalizedError {
-    case beanNotFound(String)
-    case circularDependency(String)
-    case propertiesLoading(String)
+public class BeanNotFoundError: LocalizedError{
+    private let message: String
     
-    public var errorDescription: String? {
-        switch self {
-        case .beanNotFound(let message):
-            return "Bean not found: \(message)"
-        case .circularDependency(let message):
-            return "Circular dependency detected: \(message)"
-        case .propertiesLoading(let message):
-            return "Error loading properties: \(message)"
-        }
+    public init(_ message: String) {
+        self.message = message
+    }
+}
+
+public class CircularDependencyError: LocalizedError{
+    private let message: String
+    
+    public init(_ message: String) {
+        self.message = message
+    }
+}
+
+public class PropertiesLoadingError: LocalizedError{
+    private let message: String
+    
+    public init(_ message: String) {
+        self.message = message
     }
 }
