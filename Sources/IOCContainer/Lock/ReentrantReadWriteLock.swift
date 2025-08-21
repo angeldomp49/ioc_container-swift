@@ -8,8 +8,8 @@ public class ReentrantReadWriteLock {
         pthread_rwlock_init(&lock, nil)
     }
     
-    public func requestReadLock(_ lockConsumer: () -> Any) -> Any {
-        let result: Any
+    public func requestReadLock<T>(_ lockConsumer: () -> T) -> T {
+        let result: T
         pthread_rwlock_rdlock(&lock)
         result = lockConsumer()
         pthread_rwlock_unlock(&lock)
@@ -17,8 +17,8 @@ public class ReentrantReadWriteLock {
         return result
     }
     
-    public func requestWriteLock(_ lockConsumer: () -> Any) -> Any {
-        let result: Any
+    public func requestWriteLock<T>(_ lockConsumer: () -> T) -> T {
+        let result: T
         pthread_rwlock_wrlock(&lock)
         result = lockConsumer()
         pthread_rwlock_unlock(&lock)
