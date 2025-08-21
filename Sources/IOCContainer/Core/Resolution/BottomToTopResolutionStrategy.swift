@@ -57,7 +57,7 @@ public class BottomToTopResolutionStrategy: DependencyResolutionStrategy{
         }
     }
     
-    public func canGetBuild(beanInformation: BeanInformation, alreadyInstantiatedIds: Set<String>, prototypes: Set<String>) -> Bool {
+    private func canGetBuild(beanInformation: BeanInformation, alreadyInstantiatedIds: Set<String>, prototypes: Set<String>) -> Bool {
         
         if(beanInformation.dependencies.isEmpty){
             return true
